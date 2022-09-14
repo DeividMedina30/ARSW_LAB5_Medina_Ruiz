@@ -14,6 +14,7 @@ import edu.eci.arsw.blueprints.controllers.model.Blueprint;
 import edu.eci.arsw.blueprints.controllers.services.BlueprintsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +31,7 @@ public class BlueprintAPIController {
     @Autowired
     BlueprintsServices bps;
 
-    @RequestMapping(method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET , produces = {MediaType.APPLICATION_JSON_VALUE}) //Define que formato va a devolver, por defecto es JSON - produces = {MediaType.APPLICATION_JSON_VALUE}
     public ResponseEntity<?> manejadorGetRecursoXX(){ //ResponseEntity<?> Envolver la respuesta y además se puede agregar unos parámetros.
         try {
             //obtener datos que se enviarán a través del API
