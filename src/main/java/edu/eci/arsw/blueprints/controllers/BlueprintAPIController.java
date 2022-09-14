@@ -11,15 +11,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import edu.eci.arsw.blueprints.controllers.model.Blueprint;
+import edu.eci.arsw.blueprints.controllers.persistences.BlueprintPersistenceException;
 import edu.eci.arsw.blueprints.controllers.services.BlueprintsServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
@@ -70,6 +68,18 @@ public class BlueprintAPIController {
             return new ResponseEntity<>("Hubo un error con la petición", HttpStatus.NOT_FOUND);
         }
     }
+
+    @RequestMapping(method = RequestMethod.POST)	
+    public ResponseEntity<?> createNewBlueprint(@RequestBody Blueprint blueprint){
+        try {
+            bps.addNewBlueprint(blueprint);
+            return new ResponseEntity<>("Nuevo plano creado", HttpStatus.CREATED);
+        } catch (BlueprintPersistenceException ex) {
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Error bla bla bla",HttpStatus.FORBIDDEN);            
+        }
+
+}
 
 }
 
