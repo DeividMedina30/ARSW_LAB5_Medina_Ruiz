@@ -47,9 +47,9 @@ public class BlueprintAPIController {
     public ResponseEntity<?> getBluePrintAuthor(@PathVariable("author") String author){ //@PathVariable indica que nos referimos a datos incluidos dentro del mismo path del pedido
         try {
             Set<Blueprint> planosAuthor =  bps.getBlueprintsByAuthor(author);
-//            if(planosAuthor.isEmpty()){
-//                return new ResponseEntity<>("No existe el Author", HttpStatus.NOT_FOUND);
-//            }
+            if(planosAuthor.isEmpty()){
+                return new ResponseEntity<>("No existe el Author", HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<>(planosAuthor,HttpStatus.ACCEPTED);
         }catch (Exception ex){
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
