@@ -57,5 +57,19 @@ public class BlueprintAPIController {
         }
     }
 
+    @RequestMapping(value = "/{author}/{bpname}", method = RequestMethod.GET, produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<?> getBluePrintAuthorAndPlano(@PathVariable("author") String author, @PathVariable("bpname") String bpname){
+        try {
+            Set<Blueprint> planoAuthor =  bps.getAllBlueprintsByAuthorAndPlano(author, bpname);
+            if(planoAuthor.isEmpty()){
+                return new ResponseEntity<>("No existe el Author y/o el plano", HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(planoAuthor,HttpStatus.ACCEPTED);
+        }catch (Exception ex){
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Hubo un error con la petición", HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
 

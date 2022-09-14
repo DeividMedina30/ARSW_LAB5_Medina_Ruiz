@@ -78,5 +78,15 @@ public class BlueprintsServices {
     public Set<Blueprint> getAllBlueprints(){
         return bpp.getAllBlueprints();
     }
+
+    /**
+     * Método que me retorna el autor dado su nombre y el plano de ese autor que buscamos.
+     * @param author - String nombre del pintor que queremos obtener sus obras o datos.
+     * @param plano - String nombre del plano que queremos obtener.
+     * @return Set(Blueprint) - El cual contiene toda la información de los BluePrint por su autor y un plano
+     */
+    public Set<Blueprint> getAllBlueprintsByAuthorAndPlano(String author, String plano) {
+        return bpp.getAllBlueprintsByAuthorAndPlano(author, plano);
+    }
 }
 
