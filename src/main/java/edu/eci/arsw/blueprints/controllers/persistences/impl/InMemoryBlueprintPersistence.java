@@ -25,9 +25,9 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         Point[] pts=new Point[]{new Point(140, 140),new Point(115, 115)};
         Point[] pts2=new Point[]{new Point(130, 170),new Point(185, 175)};
         Point[] pts3=new Point[]{new Point(120, 160),new Point(15, 195)};
-        Blueprint bp=new Blueprint("_authorname_", "_bpname_ ",pts);
-        Blueprint bp2=new Blueprint("_authorname_", "_bpname_ ",pts2);
-        Blueprint bp3=new Blueprint("_UsuarioUno_", "_Usario_ ",pts3);
+        Blueprint bp=new Blueprint("Deivid", "_bpname_ ",pts);
+        Blueprint bp2=new Blueprint("Deivid", "_bpnames_ ",pts2);
+        Blueprint bp3=new Blueprint("Cristian", "_Usario_ ",pts3);
         blueprints.put(new Tuple<>(bp.getAuthor(),bp.getName()), bp);
         blueprints.put(new Tuple<>(bp2.getAuthor(),bp2.getName()), bp2);
         blueprints.put(new Tuple<>(bp3.getAuthor(),bp3.getName()), bp3);
@@ -54,7 +54,7 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
     public Set<Blueprint> getBlueprintsByAuthor(String author) throws BlueprintNotFoundException{
         Set<Blueprint> lista = new HashSet<Blueprint>();
         for(Map.Entry<Tuple<String, String>,Blueprint> entry : blueprints.entrySet()){
-            if(entry.getKey().getElem1() == author){
+            if(entry.getKey().getElem1().equals(author)){
                 String name = entry.getKey().getElem2();
                 lista.add(blueprints.get(new Tuple<>(author, name)));
             }
