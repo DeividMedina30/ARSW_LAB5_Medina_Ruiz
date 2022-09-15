@@ -1,0 +1,17 @@
+1. Las condiciones carreras que se lograron identificar fueron las siguientes.
+    * Al momento de insertar un nuevo plano. Esto debido que al momento de entrar a consultar la lista que contiene todos los BluePrint y posterioremente proceder a crear uno nuevo no se realizan de forma atómica.
+    * Al momento de Actualizar un nuevo plano. Así mismo se observa que suceden los mismos inconvenientes al momento de querer actualizar, ya que primero debemos de realizar un get de la lista y casi inmediatamente realizar el set de la actualización.
+
+2. Regiones Criticas:
+    * Solo se observa una región la cual se encuentra en la clase InMemoryBlueprintPersistence, ya que esta contiene el HashMap de todos los BluePrint y este al no ser un tipo de dato enfocado al paralelismo puede presentar inconvenientes al momento de acceder a ella.
+3. Solución
+    De los posibles métodos que puede llegar a ofrecer Thread-Safe para su soluciono:
+    •	No compartir la variable de estado entre subproceso.
+    •	Hacer que la variable de estado sea inmutable
+    •	Utilizar Sincronización cada vez que se acceda a ella.
+    Se prefirió optar por un tipo de dato especializado que ya maneja el paralelismo y nos ofrece java.
+El cual es ConcurrentHashMap.
+
+Dejando así que nuestra nueva variable quede de la siguiente forma.
+
+public final static Map<Tuple<String,String>,Blueprint> blueprints=new ConcurrentHashMap<>();

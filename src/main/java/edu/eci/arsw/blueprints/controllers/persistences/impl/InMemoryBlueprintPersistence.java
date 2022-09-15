@@ -8,6 +8,7 @@ import edu.eci.arsw.blueprints.controllers.persistences.BlueprintsPersistence;
 import edu.eci.arsw.blueprints.controllers.persistences.BlueprintPersistenceException;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  *
@@ -16,7 +17,7 @@ import java.util.*;
 @Service("serviceInMemoryBlueprintPersistence")
 public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
 
-    public final static Map<Tuple<String,String>,Blueprint> blueprints=new HashMap<>();
+    public final static Map<Tuple<String,String>,Blueprint> blueprints=new ConcurrentHashMap<>();
 
     public InMemoryBlueprintPersistence() {
         //load stub data
@@ -32,7 +33,6 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
         blueprints.put(new Tuple<>(bp2.getAuthor(),bp2.getName()), bp2);
         blueprints.put(new Tuple<>(bp3.getAuthor(),bp3.getName()), bp3);
         blueprints.put(new Tuple<>(bp4.getAuthor(),bp4.getName()), bp4);
-
     }
 
 
