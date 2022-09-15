@@ -89,6 +89,13 @@ public class BlueprintsServices {
         return bpp.getAllBlueprintsByAuthorAndPlano(author, plano);
     }
 
+    /**
+     * Método que permite actualizar los puntos de un BluePrint dado su nombre y autor, como los puntos a actualziar.
+     * @param author - String nombre del pintor que queremos obtener sus obras o datos.
+     * @param name - String nombre del plano que queremos obtener.
+     * @param newBlueprint - Blueprint, contiene los nuevos puntos a actualizar.
+     * @return
+     */
     public Set<Blueprint> editBlueprint(String author, String name, Blueprint newBlueprint){
         return bpp.editBlueprint(author, name, newBlueprint);
     }
