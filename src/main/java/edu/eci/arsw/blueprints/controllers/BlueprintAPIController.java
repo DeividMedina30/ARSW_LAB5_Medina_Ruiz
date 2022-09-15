@@ -78,8 +78,21 @@ public class BlueprintAPIController {
             Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
             return new ResponseEntity<>("Error bla bla bla",HttpStatus.FORBIDDEN);            
         }
+    }
 
-}
+    @RequestMapping(value = "/{author}/{name}", method = RequestMethod.PUT)
+    public ResponseEntity<?> editBluePrint(@PathVariable String author,@PathVariable String name, @RequestBody Blueprint newBlueprint){
+        try{
+            if (bps.getAllBlueprintsByAuthorAndPlano(author, name).isEmpty()){
+                return new ResponseEntity<>("No existe el Author y/o el plano que desea editar", HttpStatus.NOT_FOUND);
+            }
+            bps.editBlueprint(author, name, newBlueprint);
+            return new ResponseEntity<>("Nuevo plano editado correctamente", HttpStatus.ACCEPTED);
+        }catch (Exception ex){
+            Logger.getLogger(BlueprintAPIController.class.getName()).log(Level.SEVERE, null, ex);
+            return new ResponseEntity<>("Hubo un error con la petición", HttpStatus.NOT_FOUND);
+        }
+    }
 
 }
 

@@ -88,5 +88,9 @@ public class BlueprintsServices {
     public Set<Blueprint> getAllBlueprintsByAuthorAndPlano(String author, String plano) {
         return bpp.getAllBlueprintsByAuthorAndPlano(author, plano);
     }
+
+    public Set<Blueprint> editBlueprint(String author, String name, Blueprint newBlueprint){
+        return bpp.editBlueprint(author, name, newBlueprint);
+    }
 }
 

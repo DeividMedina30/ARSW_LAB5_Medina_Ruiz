@@ -44,4 +44,6 @@ public interface BlueprintsPersistence {
      *
      */
     public Set<Blueprint> getAllBlueprintsByAuthorAndPlano(String author, String plano);
+
+    public Set<Blueprint> editBlueprint(String author, String name, Blueprint newBlueprint);
 }

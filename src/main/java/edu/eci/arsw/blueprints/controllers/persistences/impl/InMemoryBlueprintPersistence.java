@@ -6,10 +6,8 @@ import edu.eci.arsw.blueprints.controllers.model.Blueprint;
 import edu.eci.arsw.blueprints.controllers.model.Point;
 import edu.eci.arsw.blueprints.controllers.persistences.BlueprintsPersistence;
 import edu.eci.arsw.blueprints.controllers.persistences.BlueprintPersistenceException;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+
+import java.util.*;
 
 /**
  *
@@ -85,6 +83,21 @@ public class InMemoryBlueprintPersistence implements BlueprintsPersistence{
                 break;
             }
         }
+        return lista;
+    }
+
+    @Override
+    public Set<Blueprint> editBlueprint(String author, String plano, Blueprint newBlueprint) {
+        Set<Blueprint> lista = new HashSet<>();
+        Blueprint currentBlueprint = null;
+        try {
+            currentBlueprint = getBlueprint(author, plano);
+        } catch (BlueprintNotFoundException e) {
+            e.printStackTrace();
+        }
+        List<Point> newPoints = newBlueprint.getPoints();
+        currentBlueprint.setPoints(newPoints);
+        lista.add(currentBlueprint);
         return lista;
     }
 
